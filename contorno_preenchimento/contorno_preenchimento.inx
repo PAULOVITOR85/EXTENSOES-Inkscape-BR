@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Contorno e Preenchimento Avançado — Interface (.inx)
+  Inkscape 1.4+  |  GPL v2+  |  Otimizado para 720p
+
+  Layout compacto:
+    • Removidos headers e separadores supérfluos
+    • hbox para pares de cores (economiza ~70px por aba)
+    • scrolledwindow em cada aba (segurança em telas pequenas)
+    • Sliders com appearance="full" e tamanho mínimo razoável
+-->
+<inkscape-extension
+    xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+
+  <n>Contorno e Preenchimento Avançado</n>
+  <id>org.exemplo.contornoEpreenchimento</id>
+  <description>Contorno, brilho externo/interno e gradiente de forma não-destrutiva.</description>
+
+  <!-- ══════════════════════════════════════════════════════
+       NOTEBOOK — 4 ABAS
+  ══════════════════════════════════════════════════════ -->
+  <param name="tab" type="notebook">
+
+    <!-- ╔══════════════════════════╗
+         ║  ABA 1 — CONTORNO        ║
+         ╚══════════════════════════╝ -->
+    <page name="aba_contorno" gui-text="✏ Contorno">
+      <scrolledwindow>
+
+        <param name="enable_stroke" type="bool"
+               gui-text="Ativar contorno">true</param>
+
+        <param name="stroke_width" type="float"
+               min="0.1" max="200.0" precision="1"
+               appearance="full"
+               gui-text="Largura (px)">2.0</param>
+
+        <param name="stroke_opacity" type="float"
+               min="0.0" max="1.0" precision="2"
+               appearance="full"
+               gui-text="Opacidade">1.0</param>
+
+        <param name="stroke_color" type="color"
+               gui-text="Cor sólida">0x000000ff</param>
+
+        <separator/>
+
+        <param name="stroke_gradient" type="bool"
+               gui-text="Usar gradiente (sobrepõe cor sólida)">false</param>
+
+        <!-- Cores do gradiente lado a lado -->
+        <hbox>
+          <param name="stroke_grad_color1" type="color"
+                 gui-text="Cor 1">0xff0000ff</param>
+          <param name="stroke_grad_color2" type="color"
+                 gui-text="Cor 2">0x0000ffff</param>
+        </hbox>
+
+        <param name="stroke_grad_angle" type="float"
+               min="0.0" max="360.0" precision="1"
+               appearance="full"
+               gui-text="Ângulo (°)">0.0</param>
+
+      </scrolledwindow>
+    </page><!-- /aba_contorno -->
+
+
+    <!-- ╔══════════════════════════╗
+         ║  ABA 2 — BRILHO EXTERNO  ║
+         ╚══════════════════════════╝ -->
+    <page name="aba_outer_glow" gui-text="✨ Externo">
+      <scrolledwindow>
+
+        <param name="enable_outer_glow" type="bool"
+               gui-text="Ativar brilho externo">false</param>
+
+        <param name="outer_color" type="color"
+               gui-text="Cor do brilho">0xffff00ff</param>
+
+        <param name="outer_blur" type="float"
+               min="0.0" max="100.0" precision="1"
+               appearance="full"
+               gui-text="Desfoque">8.0</param>
+
+        <param name="outer_spread" type="float"
+               min="0.0" max="50.0" precision="1"
+               appearance="full"
+               gui-text="Expansão">0.0</param>
+
+        <param name="outer_opacity" type="float"
+               min="0.0" max="1.0" precision="2"
+               appearance="full"
+               gui-text="Opacidade">0.8</param>
+
+      </scrolledwindow>
+    </page><!-- /aba_outer_glow -->
+
+
+    <!-- ╔══════════════════════════╗
+         ║  ABA 3 — BRILHO INTERNO  ║
+         ╚══════════════════════════╝ -->
+    <page name="aba_inner_glow" gui-text="💫 Interno">
+      <scrolledwindow>
+
+        <param name="enable_inner_glow" type="bool"
+               gui-text="Ativar brilho interno">false</param>
+
+        <param name="inner_color" type="color"
+               gui-text="Cor do brilho">0x00ffffff</param>
+
+        <param name="inner_blur" type="float"
+               min="0.0" max="100.0" precision="1"
+               appearance="full"
+               gui-text="Desfoque">8.0</param>
+
+        <param name="inner_opacity" type="float"
+               min="0.0" max="1.0" precision="2"
+               appearance="full"
+               gui-text="Opacidade">0.8</param>
+
+      </scrolledwindow>
+    </page><!-- /aba_inner_glow -->
+
+
+    <!-- ╔═══════════════════════════════╗
+         ║  ABA 4 — PREENCHIMENTO        ║
+         ╚═══════════════════════════════╝ -->
+    <page name="aba_fill" gui-text="🎨 Preencher">
+      <scrolledwindow>
+
+        <param name="enable_fill_gradient" type="bool"
+               gui-text="Aplicar gradiente ao preenchimento">false</param>
+
+        <!-- Tipo + ângulo lado a lado -->
+        <hbox>
+          <param name="fill_gradient_type" type="optiongroup"
+                 appearance="combo"
+                 gui-text="Tipo">
+            <option value="linear">Linear</option>
+            <option value="radial">Radial</option>
+          </param>
+
+          <param name="fill_angle" type="float"
+                 min="0.0" max="360.0" precision="1"
+                 appearance="full"
+                 gui-text="Ângulo (°)">0.0</param>
+        </hbox>
+
+        <separator/>
+
+        <!-- Cores lado a lado -->
+        <hbox>
+          <param name="fill_color1" type="color"
+                 gui-text="Cor 1">0xff6600ff</param>
+          <param name="fill_color2" type="color"
+                 gui-text="Cor 2">0xffff00ff</param>
+        </hbox>
+
+        <param name="fill_opacity1" type="float"
+               min="0.0" max="1.0" precision="2"
+               appearance="full"
+               gui-text="Opacidade cor 1">1.0</param>
+
+        <param name="fill_opacity2" type="float"
+               min="0.0" max="1.0" precision="2"
+               appearance="full"
+               gui-text="Opacidade cor 2">1.0</param>
+
+      </scrolledwindow>
+    </page><!-- /aba_fill -->
+
+  </param><!-- /notebook -->
+
+
+  <!-- ══════════════════════════════════════════════════════
+       CONFIGURAÇÃO DO EFEITO
+  ══════════════════════════════════════════════════════ -->
+  <effect>
+    <object-type>all</object-type>
+    <effects-menu>
+      <submenu name="Estilo Visual"/>
+    </effects-menu>
+  </effect>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SCRIPT  —  interpreter="python" obrigatório (Win+Linux)
+  ══════════════════════════════════════════════════════ -->
+  <script>
+    <command location="inx" interpreter="python">contorno_preenchimento.py</command>
+  </script>
+
+</inkscape-extension>
