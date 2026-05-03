@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  CPE 04 — Gradiente de Preenchimento
+  Efeitos > Estilo Visual > Gradiente de Preenchimento...
+  Inkscape 1.4+  |  GPL v2+
+-->
+<inkscape-extension
+    xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+
+  <name>Gradiente de Preenchimento</name>
+  <id>org.cpe.gradientePreenchimento</id>
+  <description>Aplica gradiente linear ou radial ao preenchimento do objeto selecionado.</description>
+
+  <!-- Roteador fixo -->
+  <param name="modo" type="string" gui-hidden="true">fill</param>
+
+  <!-- Tipo + ângulo lado a lado -->
+  <hbox>
+    <param name="fill_gradient_type" type="optiongroup"
+           appearance="combo"
+           gui-text="Tipo">
+      <option value="linear">Linear</option>
+      <option value="radial">Radial</option>
+    </param>
+
+    <param name="fill_angle" type="float"
+           min="0.0" max="360.0" precision="1"
+           appearance="full"
+           gui-text="Ângulo (°)">0.0</param>
+  </hbox>
+
+  <separator/>
+
+  <!-- Cores lado a lado -->
+  <hbox>
+    <param name="fill_color1" type="color"
+           gui-text="Cor 1">0xff6600ff</param>
+    <param name="fill_color2" type="color"
+           gui-text="Cor 2">0xffff00ff</param>
+  </hbox>
+
+  <param name="fill_opacity1" type="float"
+         min="0.0" max="1.0" precision="2"
+         appearance="full"
+         gui-text="Opacidade cor 1">1.0</param>
+
+  <param name="fill_opacity2" type="float"
+         min="0.0" max="1.0" precision="2"
+         appearance="full"
+         gui-text="Opacidade cor 2">1.0</param>
+
+  <effect>
+    <object-type>all</object-type>
+    <effects-menu>
+      <submenu name="Estilo Visual"/>
+    </effects-menu>
+  </effect>
+
+  <script>
+    <command location="inx" interpreter="python">cpe_engine.py</command>
+  </script>
+
+</inkscape-extension>

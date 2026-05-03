@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  CPE 03 — Brilho Interno
+  Efeitos > Estilo Visual > Brilho Interno...
+  Inkscape 1.4+  |  GPL v2+
+-->
+<inkscape-extension
+    xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+
+  <name>Brilho Interno</name>
+  <id>org.cpe.brilhoInterno</id>
+  <description>Aplica brilho interno (inner glow) confinado à forma via filtro SVG, de forma não-destrutiva.</description>
+
+  <!-- Roteador fixo -->
+  <param name="modo" type="string" gui-hidden="true">interno</param>
+
+  <param name="inner_color" type="color"
+         gui-text="Cor do brilho">0x00ffffff</param>
+
+  <param name="inner_blur" type="float"
+         min="0.0" max="100.0" precision="1"
+         appearance="full"
+         gui-text="Desfoque">8.0</param>
+
+  <param name="inner_opacity" type="float"
+         min="0.0" max="1.0" precision="2"
+         appearance="full"
+         gui-text="Opacidade">0.8</param>
+
+  <effect>
+    <object-type>all</object-type>
+    <effects-menu>
+      <submenu name="Estilo Visual"/>
+    </effects-menu>
+  </effect>
+
+  <script>
+    <command location="inx" interpreter="python">cpe_engine.py</command>
+  </script>
+
+</inkscape-extension>

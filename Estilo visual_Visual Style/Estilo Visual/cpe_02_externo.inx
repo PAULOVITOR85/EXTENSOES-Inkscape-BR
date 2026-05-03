@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  CPE 02 — Brilho Externo
+  Efeitos > Estilo Visual > Brilho Externo...
+  Inkscape 1.4+  |  GPL v2+
+-->
+<inkscape-extension
+    xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+
+  <name>Brilho Externo</name>
+  <id>org.cpe.brilhoExterno</id>
+  <description>Aplica brilho externo (outer glow) via filtro SVG de forma não-destrutiva.</description>
+
+  <!-- Roteador fixo -->
+  <param name="modo" type="string" gui-hidden="true">externo</param>
+
+  <param name="outer_color" type="color"
+         gui-text="Cor do brilho">0xffff00ff</param>
+
+  <param name="outer_blur" type="float"
+         min="0.0" max="100.0" precision="1"
+         appearance="full"
+         gui-text="Desfoque">8.0</param>
+
+  <param name="outer_spread" type="float"
+         min="0.0" max="50.0" precision="1"
+         appearance="full"
+         gui-text="Expansão">0.0</param>
+
+  <param name="outer_opacity" type="float"
+         min="0.0" max="1.0" precision="2"
+         appearance="full"
+         gui-text="Opacidade">0.8</param>
+
+  <effect>
+    <object-type>all</object-type>
+    <effects-menu>
+      <submenu name="Estilo Visual"/>
+    </effects-menu>
+  </effect>
+
+  <script>
+    <command location="inx" interpreter="python">cpe_engine.py</command>
+  </script>
+
+</inkscape-extension>
